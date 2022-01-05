@@ -11,7 +11,7 @@ Solved common issues (the real bois will know) :
 - Container that keeps restarting
 - *docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]]*
 
-This repository contains release info and advanced image manipulation. See project [Dockerhub](https://hub.docker.com/repository/docker/lmwafer/orb-slam-3-ready) for more quick usage info.
+This repository contains release info and advanced image manipulation. See the project's [Dockerhub](https://hub.docker.com/repository/docker/lmwafer/orb-slam-3-ready) for more quick usage info.
 
 # I want vSLAM now !
 1. This will pull the image from [Docker hub](https://hub.docker.com/r/lmwafer/orb-slam-3-ready/tags) and run a container (needs a GPU for Pangolin, container removed after exit)
