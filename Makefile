@@ -9,10 +9,10 @@ up:
 	sudo xhost +local:root && sudo docker-compose up -d
 
 enter:
-	clear && docker exec -it ${ORB_CONT_NAME} bash
+	clear && docker exec -it ${CONT_NAME} bash
 
 down:
 	docker-compose down
 
 build:
-	sudo docker build -t ${ORB_IM_NAME}:${ORB_IM_TAG} .
+	sudo docker build -t ${IM_NAME}:${IM_TAG} .
