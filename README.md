@@ -91,20 +91,20 @@ make
 
 Start an *orb-slam-3-container* (uses **docker-compose.yml**)
 ```bash
-make up-orb
+make up
 ```
 
 Enter running *orb-slam-3-container*
 ```bash
-make enter-orb
+make enter
 ```
 
 Stop running *orb-slam-3-container* (and removes it, by default only data in */app* is saved here in *app* directory)
 ```bash
-make down-orb
+make down
 ```
 
 Build *orb-slam-3-ready* image (uses **Dockerfile**)
 ```bash
-make build-orb
+make build
 ```
