@@ -2,10 +2,14 @@
 
 # Introduction 
 
-Go see the holy [ORB-SLAM 3 on Github](https://github.com/UZ-SLAMLab/ORB_SLAM3) !
+## Reference
 
-Just an image that makes you skip the whole ORB-SLAM 3 installation process. Simply run a container and start vSLAM examples. No additional applications, no fancy dependencies... just the source code !
-Moreover, all the images and their build are tested on 3 different machines with Ubuntu 20.04 to ensure they work properly !
+[ORB-SLAM3] Carlos Campos, Richard Elvira, Juan J. Gómez Rodríguez, José M. M. Montiel and Juan D. Tardós, **ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM**, *IEEE Transactions on Robotics 37(6):1874-1890, Dec. 2021*. **[PDF](https://arxiv.org/abs/2007.11898)**. **[Github](https://github.com/UZ-SLAMLab/ORB_SLAM3)**. 
+
+## What's that repo?
+
+Just a Docker image that makes you skip the whole ORB-SLAM 3 installation process. Simply run a container and start vSLAM examples. No additional applications, no fancy dependencies... just the source code!
+Moreover, all the images and their build are tested on 3 different machines with Ubuntu 20.04 to ensure they work properly!
 
 Solved common issues (the real bois will know) : 
 - *what(): Pangolin X11: Failed to create an OpenGL context*
@@ -13,19 +17,21 @@ Solved common issues (the real bois will know) :
 - Container that keeps restarting
 - *docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]]*
 
-This repository contains release info and advanced image manipulation. See the project's [Dockerhub](https://hub.docker.com/repository/docker/lmwafer/orb-slam-3-ready) for more quick usage info.
+This repository contains release info and advanced image manipulation. See the project's **[Dockerhub](https://hub.docker.com/repository/docker/lmwafer/orb-slam-3-ready)** for more quick usage info.
 
 # I want vSLAM now
-1. This will pull the image from [Docker hub](https://hub.docker.com/r/lmwafer/orb-slam-3-ready/tags) and run a container (needs a GPU for Pangolin, container removed after exit)
+1. Make sure to have the basic docker dependencies mentioned [here](#image-prerequisites). 
+  
+2. This will pull the image from [Docker hub](https://hub.docker.com/r/lmwafer/orb-slam-3-ready/tags) and run a container (needs a GPU for Pangolin, container removed after exit)
 ```bash
 sudo xhost +local:root && docker run --privileged --name orb-3-container --rm -p 8087:8087 -e DISPLAY=$DISPLAY -e QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev:/dev:ro --gpus all -it lmwafer/orb-slam-3-ready:1.0-ubuntu18.04
 ```
 
-2. Run this inside the container to start a real time demo (with Intel D435i)
+3. Run this inside the container to start a real time demo (with Intel D435i plugged in)
 ```bash
 /dpds/ORB_SLAM3/Examples/Monocular/mono_realsense_D435i /dpds/ORB_SLAM3/Vocabulary/ORBvoc.txt /dpds/ORB_SLAM3/Examples/Monocular/RealSense_D435i.yaml
 ```
-You can run every example presented above with Realsense cameras. Everything in the image is already built !
+You can run every example presented above with Realsense cameras. Everything in the image is already built!
 
 # General info
 The image is based on three image layers : [Ubuntu 18.04](https://hub.docker.com/_/ubuntu?tab=tags&page=1&name=18.04), [realsense-ready](https://hub.docker.com/r/lmwafer/realsense-ready) and [orb-slam-3-ready](https://hub.docker.com/r/lmwafer/orb-slam-3-ready). 
@@ -40,7 +46,7 @@ Every dependency is installed in */dpds* directory. Reach original ORB_SLAM3 dir
 cd /dpds/ORB_SLAM3/
 ```
 
-You may want a better control on what's inside the image. To this matter you will find here : 
+You may want better control of what's inside the image. To this matter you will find here : 
 
 - Image *Dockerfile*. Note that **orb-slam-3-ready** lays on top of **realsense-ready**. Modify that by changing `FORM` instruction in *Dockerfile-orb*. Don't forget general usage dependencies that came along realsense-ready image !
 
@@ -63,7 +69,7 @@ You may want a better control on what's inside the image. To this matter you wil
 
 - Nvidia Container Toolkit (tested with ubuntu20.04 distribution), see [NVIDIA Container Toolkit Installation Guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 
-- A PC with GPU. Use the following to list aviable graphics units
+- A PC with GPU. Use the following to list available graphics units
   ```bash
   lshw -c display
   ```
