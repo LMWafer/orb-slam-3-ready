@@ -22,12 +22,12 @@ This repository contains release info and advanced image manipulation. See the p
 # I want vSLAM now
 1. Make sure to have the basic docker dependencies mentioned [here](#image-prerequisites). 
   
-2. This will pull the image from [Docker hub](https://hub.docker.com/r/lmwafer/orb-slam-3-ready/tags) and run a container (needs a GPU for Pangolin, container removed after exit)
+2. Execute this commant to will pull the image from [Docker hub](https://hub.docker.com/r/lmwafer/orb-slam-3-ready/tags) and run a container (needs a GPU for Pangolin, container removed after exit). Make sure you are [logged in](https://docs.docker.com/reference/cli/docker/login/) to your dockerhub account.
 ```bash
 sudo xhost +local:root && docker run --privileged --name orb-3-container --rm -p 8087:8087 -e DISPLAY=$DISPLAY -e QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev:/dev:ro --gpus all -it lmwafer/orb-slam-3-ready:1.0-ubuntu18.04
 ```
 
-3. Run this inside the container to start a real time demo (with Intel D435i plugged in)
+3. Execute this inside the container to start a real time demo (with Intel D435i plugged in)
 ```bash
 /dpds/ORB_SLAM3/Examples/Monocular/mono_realsense_D435i /dpds/ORB_SLAM3/Vocabulary/ORBvoc.txt /dpds/ORB_SLAM3/Examples/Monocular/RealSense_D435i.yaml
 ```
@@ -79,6 +79,8 @@ You may want better control of what's inside the image. To this matter you will 
 ```bash
 docker pull lmwafer/orb-slam-3-ready:<desired tag>
 ```
+
+For now, there are two available tags :  `1.0-ubuntu18.04` and `1.1-ubuntu18.04`.
 
 # Image usage
 
